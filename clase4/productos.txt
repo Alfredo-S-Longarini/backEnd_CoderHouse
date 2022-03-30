@@ -1,0 +1,1 @@
+[{"nameProd":"Razer Deathadder v2","price":6400,"img":"./clase4/img/razerV2.jpg","id":1},{"nameProd":"Razer Kraken Ultimate","price":25000,"img":"./clase4/img/razerKraken.jpg","id":3},{"nameProd":"Hola","price":6400,"img":"holaaaa","id":4}]
