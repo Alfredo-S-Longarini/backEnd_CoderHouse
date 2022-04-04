@@ -49,12 +49,18 @@ class Contenedor{
         });
     }
 
-    deleteById(numId){//Borra el objeto asociado al id ingresado.
+    async deleteById(numId){//Borra el objeto asociado al id ingresado.
 
         const newListProd = productsInFile.filter((item)=>item.id!==numId);
         productsInFile = newListProd;
-        fs.writeFileSync(this.nameFile, JSON.stringify(newListProd));
-
+        try{
+            await fs.promises.writeFile(this.nameFile, JSON.stringify(newListProd));
+            console.log("Objeto Eliminado");
+        }
+        catch(err){
+            console.log("Hubo un error: " + err);
+        }
+    
     }
 
     deleteAll(){//Borra todo el contenido del archivo.
