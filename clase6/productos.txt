@@ -1,0 +1,1 @@
+[{"nameProd": "Razer Deathadder v2", "price": 6400, "img": "", "id": 1}, {"nameProd": "Razer Huntsman Mini", "price": 14500, "img": "", "id": 2}, {"nameProd": "Razer Kraken Ultimate", "price": 25000, "img": "", "id": 3}]

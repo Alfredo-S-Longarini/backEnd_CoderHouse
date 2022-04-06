@@ -1,13 +1,8 @@
+const express = require('express');
 let fs = require('fs');
+const app = express();
 
 let productsInFile=[];
-
-const testProducts=[{nameProd: "Razer Deathadder v2", price: 6400, img: ''}, 
-{nameProd: "Razer Huntsman Mini", price: 14500, img: ''}, 
-{nameProd: "Razer Kraken Ultimate", price: 25000, img: ''}];
-
-const newProduct= {nameProd: "Razer Seiren Mini", price: 14000, img: ''}
-
 class Contenedor{
 
     constructor(ruteFile){
@@ -47,7 +42,7 @@ class Contenedor{
             let idObj = 0;
             let contId = contParse.length;
 
-            (contId!==0 && (idObj=contParse[contId-1].id));
+            (contId!==0 && (idObj=contParse[contId-1].id))
 
             object.id = idObj + 1;
             contParse.push(object);
@@ -106,28 +101,32 @@ class Contenedor{
     }
 }
 
-const fileTest = new Contenedor('./clase4/datos.txt'); 
-
-async function ejecutarCodigo(){
-
-    for (let i = 0; i < testProducts.length; i++) {
-        console.log('id asignado:', await fileTest.save(testProducts[i])); 
-    }
-    console.log("---------------------------------");
-    console.log("Producto nuevo asignado: ");
-    console.log('id asignado:', await fileTest.save(newProduct));
-    console.log("---------------------------------");
-    console.log("El objeto en la posición",2, "es:");
-    console.log(await fileTest.getbyId(2));
-    console.log("---------------------------------");
-    console.log("Los objetos del archivo son: ");
-    console.log(await fileTest.getAll());
-    console.log("---------------------------------");
-    console.log("Objeto borrado");
-    console.log(await fileTest.deleteById(2));
-    console.log("---------------------------------");
-    console.log("Archivo vacio");
-    console.log(await fileTest.deleteAll());
+function random(min, max) {//Funcion que utilizo para obtener un numero random entre un minimo y un maximo.
+    return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
-ejecutarCodigo();
+const fileTest = new Contenedor('./clase6/productos.txt');
+
+const PORT = 8080;
+
+const server = app.listen(PORT, () => {
+    console.log(`servidor Http escuchando en el puerto ${server.address().port}`);
+});
+
+server.on("Error", error => console.log(`Error en servidor ${error}`));
+
+
+app.get('/', (req, res) => {
+    res.send({mensaje: 'Home'});
+});
+    
+app.get('/productos', async (req, res) => {//Muestra todos los objetos del archivo.
+    res.send(await fileTest.getAll());
+});
+
+app.get('/productoRandom', async (req, res) => {//Muestra un objeto random de los que se encuentran en el archivo. 
+    const max = JSON.parse(await fileTest.getAll()).length;
+
+    res.send(await fileTest.getbyId(random(1, max)));
+})
+
