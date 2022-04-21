@@ -1,0 +1,36 @@
+<section style="text-align: center;">
+
+    <h2>Lista Productos</h2>
+    <% const listExist=productos.length>0; %>
+        <% if(listExist) {%>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                <% for(const producto of productos) {%>
+                    <tbody style="line-height: 50px;">
+
+                        <td>
+                            <%=producto.name%>
+                        </td>
+
+                        <td>
+                            <%=producto.name%>
+                        </td>
+
+                        <td><img style="width: 20%;" src="<%=producto.urlImg%>" alt=""></td>
+                    </tbody>
+                    <%}%>
+            </table>
+
+            <%} else{%>
+
+                <h4>No hay productos en la lista</h4>
+
+                <%} %>
+
+</section>

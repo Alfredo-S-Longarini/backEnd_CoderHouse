@@ -1,0 +1,2 @@
+El motor de plantillas a utilizar en mi proyecto sera Handlebars ya que considero que posee una sintaxis mas facil de recordar y aprender que los otros dos motores
+y ademas, posee una documentación muy completa.

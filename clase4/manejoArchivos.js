@@ -131,3 +131,5 @@ async function ejecutarCodigo(){
 }
 
 ejecutarCodigo();
+
+export default Contenedor;
